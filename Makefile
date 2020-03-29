@@ -1,6 +1,9 @@
-.PHONY : install_tool build
-
-install_tool :
-    pip3 install pipreqs
+.PHONY : build
 build :
-    pipreqs . --encoding=utf8 --force
+	@echo "build"
+	@pipreqs . --encoding=utf8 --force
+
+.PHONY : install
+install :
+	@echo "install tools"
+	@pip3 install pipreqs
