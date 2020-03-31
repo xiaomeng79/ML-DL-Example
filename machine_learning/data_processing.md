@@ -30,9 +30,14 @@ def get_missing_data_info(data):
 delete_columns = ['Cabin']
 train_data.drop(delete_columns,axis=1,inplace=True)
 test_data.drop(delete_columns,axis=1,inplace=True)
+
+# 删除一行
+train_data = train_data.drop(train_data.loc[train_data['Electrical'].isnull()].index)
 ```
 3. 缺失值填充
 ``` 
+from sklearn.impute import SimpleImputer
+
 # 使用sklearn的impute来填充缺失值
 # missing_values:缺失值
 # strategy:填充策略(mean,median,most_frequent,constant)

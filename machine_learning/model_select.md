@@ -1,36 +1,16 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "collapsed": true
-   },
-   "outputs": [],
-   "source": [
-    "\n"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 2
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython2",
-   "version": "2.7.6"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 0
-}
+## 模型选择
+
+#### 通过GridSearchCV,搜索模型最好的参数
+``` 
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import make_scorer
+from sklearn.metrics import accuracy_score
+
+scoring = make_scorer(accuracy_score, greater_is_better=True)
+
+def get_model(estimator, parameters, X_train, y_train, scoring):  
+    model = GridSearchCV(estimator, param_grid=parameters, scoring=scoring)
+    model.fit(X_train, y_train)
+    return model.best_estimator_
+```
+
